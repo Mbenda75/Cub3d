@@ -6,12 +6,12 @@
 /*   By: benmoham <benmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 17:17:35 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/12 15:27:33 by benmoham         ###   ########.fr       */
+/*   Updated: 2022/05/12 15:33:32 by benmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "check.h"
-/* 
+ 
 void    check_wall_map(char **str, int line)
 {
     int    i;
@@ -21,11 +21,15 @@ void    check_wall_map(char **str, int line)
     while (i < line)
     {
         nb_char = ft_strlen((str[i])) - 1;
-        if (str[i][0] != '1' || str[i][nb_char] != '1')
-            error_map(4, str);
+		printf("i11 == %c\n i2 === %c\n ", str[i][0],  str[i][nb_char])	;
+        if (str[i][0] != '3' || str[i][nb_char] != '1' || str[i][0] != '3' || str[i][nb_char] != '3')
+            {
+				puts("eerror");
+				exit(1);
+			}
         i++;
     }
-} */
+}
 
 void	check_main(int ac, char **av, t_data *data)
 {

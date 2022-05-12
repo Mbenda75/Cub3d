@@ -6,7 +6,7 @@
 /*   By: benmoham <benmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 13:24:53 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/12 15:27:16 by benmoham         ###   ########.fr       */
+/*   Updated: 2022/05/12 15:32:21 by benmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	end_get_map(t_data *data)
 		return (0);
 	data->width = size_width(data);
 	data->lenght = size_lenght(data);
+	check_wall_map(data->map3, data->lenght);
 	if (!check_letter(data) || \
 	!check_duplicate_position(data) || \
 	ft_stronly("1", data->map[data->lenght - 1]) == 0)
