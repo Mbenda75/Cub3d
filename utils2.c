@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: benmoham <benmoham@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 18:24:48 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/12 14:00:39 by benmoham         ###   ########.fr       */
+/*   Updated: 2022/05/12 13:57:11 by adegadri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,18 @@ void	exit_opt(t_data *data, char *msg)
 	if (msg == NULL)
 		(void)msg;
 	else
-		printf("Error\n %s\n", msg);
+		printf("%s\n", msg);
 	if (data->mlx != NULL)
 	{
 		if (data->win != NULL)
 		{
 			free_img(data);
 			mlx_destroy_window(data->mlx, data->win);
+			data->win = NULL;
 		}
 		mlx_destroy_display(data->mlx);
 		free(data->mlx);
+		data->mlx = NULL;
 	}
 	exit(1);
 }

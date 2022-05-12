@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: benmoham <benmoham@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 13:24:53 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/12 15:32:21 by benmoham         ###   ########.fr       */
+/*   Updated: 2022/05/12 15:23:55 by adegadri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,15 @@ int	end_get_map(t_data *data)
 {
 	close(data->fd);
 	data->map = ft_split(data->line, '\n');
-	free(data->line);
+	if (data->line)
+	{
+		free(data->line);
+		data->line = NULL;
+	}
 	if (!data->map)
 		return (0);
 	data->width = size_width(data);
 	data->lenght = size_lenght(data);
-	check_wall_map(data->map3, data->lenght);
 	if (!check_letter(data) || \
 	!check_duplicate_position(data) || \
 	ft_stronly("1", data->map[data->lenght - 1]) == 0)
@@ -50,7 +53,10 @@ int	end_get_map(t_data *data)
 char	*check_tmp_in_get_map(char *tmp, t_data *data, int res)
 {
 	if (data->status == 0 && (check_temp(tmp) == 1))
+	{	
 		free(tmp);
+		tmp = NULL;
+	}
 	else if (check_temp(tmp) == 0 || data->status == 1)
 	{
 		tmp = ft_strjoinfree(tmp, " \n", 1);
@@ -60,7 +66,11 @@ char	*check_tmp_in_get_map(char *tmp, t_data *data, int res)
 			data->line = ft_strjoinfree(data->line, tmp, 1);
 			data->status = 1;
 		}
-		free(tmp);
+		if (tmp)
+		{
+			free(tmp);
+			tmp = NULL;
+		}
 	}
 	return (tmp);
 }
@@ -77,7 +87,11 @@ int	get_map(t_data *data, char **av)
 		return (0);
 	while (get_next_line(data->fd, &tmp) == 1 && res != -1)
 			tmp = check_tmp_in_get_map(tmp, data, res);
-	free(tmp);
+	if (tmp)
+	{
+		free(tmp);
+		tmp = NULL;
+	}
 	return (end_get_map(data));
 }
 

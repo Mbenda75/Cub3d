@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: benmoham <benmoham@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 16:34:13 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/12 15:31:45 by benmoham         ###   ########.fr       */
+/*   Updated: 2022/05/12 15:59:07 by adegadri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		check_all(int ac, char **av, t_data *data);
 int		check_letter(t_data *data);
 int		check_duplicate_position(t_data *data);
 void	init_pos_dir(t_data *data);
-void    check_wall_map(char **str, int line);
 void	check_main(int ac, char **av, t_data *data);
+int		first_lenght(t_data *data);
 
 #endif

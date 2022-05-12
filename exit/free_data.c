@@ -6,7 +6,7 @@
 /*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 17:54:03 by benmoham          #+#    #+#             */
-/*   Updated: 2022/05/11 16:41:24 by adegadri         ###   ########.fr       */
+/*   Updated: 2022/05/11 19:55:38 by adegadri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	free_data(t_data *data)
 
 void	free_img(t_data *data)
 {
-	if (data->north.img)
+	if (data->north.img != NULL)
 		mlx_destroy_image(data->mlx, data->north.img);
 	if (data->south.img != NULL)
 		mlx_destroy_image(data->mlx, data->south.img);

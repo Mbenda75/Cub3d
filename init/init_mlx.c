@@ -6,7 +6,7 @@
 /*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 15:20:58 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/11 18:21:53 by adegadri         ###   ########.fr       */
+/*   Updated: 2022/05/12 15:00:04 by adegadri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	init_win(t_data *data)
 {
 	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "CUB3D");
 	if (!data->win)
-		exit_opt(data, "window failed");
+		exit_opt(data, "Error\nwindow failed");
 	init_display(data);
 }
 

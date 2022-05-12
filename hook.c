@@ -6,7 +6,7 @@
 /*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:12:37 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/11 18:54:53 by adegadri         ###   ########.fr       */
+/*   Updated: 2022/05/12 15:01:13 by adegadri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_stronly(const char *s, const char *s2)
 	{
 		if (*s != s2[i] && !ft_isspace(s2[i]))
 		{
-			printf("Error\n Bad map");
+			printf("Error\n Bad map\n");
 			return (0);
 		}
 		i++;

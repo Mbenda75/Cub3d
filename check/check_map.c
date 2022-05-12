@@ -6,7 +6,7 @@
 /*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 12:50:37 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/11 16:37:06 by adegadri         ###   ########.fr       */
+/*   Updated: 2022/05/12 14:59:38 by adegadri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 int	check_letter_error(t_data *data)
 {
-	printf("%s\n", "Error \n use of wrong character");
-	free_tab(data->map);
-	exit_opt(data, NULL);
+	free_map(data);
+	exit_opt(data, "Error \n use of wrong character\n");
 	return (0);
 }
 

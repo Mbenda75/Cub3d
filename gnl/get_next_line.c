@@ -3,15 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: benmoham <benmoham@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 17:56:28 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/12 14:32:05 by benmoham         ###   ########.fr       */
+/*   Updated: 2022/05/12 14:53:14 by adegadri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "get_next_line.h"
+
+void	ft_free_save(char *save)
+{
+	if (save)
+	{
+		free(save);
+		save = NULL;
+	}
+}
 
 char	*ft_save(char *save)
 {
@@ -24,8 +33,7 @@ char	*ft_save(char *save)
 	dst = (char *)malloc(sizeof(char) * (i + 1));
 	if (!dst)
 	{
-		save = NULL;
-		free(save);
+		ft_free_save(save);
 		return (NULL);
 	}
 	i = 0;
@@ -46,23 +54,24 @@ char	*ft_resave(char *save)
 	int		j;
 
 	i = 0;
+	dst = NULL;
 	while (save[i] && save[i] != '\n')
 		i++;
 	i++;
 	len = ft_strlen(save);
-	dst = (char *)malloc(sizeof(char) * ((len - i) + 1));
+	if ((len - i) != 0)
+		dst = (char *)malloc(sizeof(char) * ((len - i) + 1));
 	if (!dst)
 	{
-		free(save);
-		save = NULL;
+		ft_free_save(save);
 		return (NULL);
 	}
 	j = 0;
 	while (save[i])
 		dst[j++] = save[i++];
-	free(save);
-	save = NULL;
-	dst[j] = '\0';
+	ft_free_save(save);
+	if (dst)
+		dst[j] = '\0';
 	return (dst);
 }
 
@@ -93,8 +102,7 @@ int	get_next_line(int fd, char **line)
 		if (rd == 0)
 		{
 			*line = ft_strdup(save);
-			free(save);
-			save = 0;
+			ft_free_save(save);
 			return (0);
 		}
 		save = ft_strjoin(save, buffer);
