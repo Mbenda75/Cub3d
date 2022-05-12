@@ -6,7 +6,7 @@
 /*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 18:24:48 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/12 13:57:11 by adegadri         ###   ########.fr       */
+/*   Updated: 2022/05/12 17:10:52 by adegadri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ void	exit_opt(t_data *data, char *msg)
 		mlx_destroy_display(data->mlx);
 		free(data->mlx);
 		data->mlx = NULL;
+	}
+	if (data->line)
+	{
+		free(data->line);
+		data->line = NULL;
 	}
 	exit(1);
 }

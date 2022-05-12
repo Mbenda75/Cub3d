@@ -6,7 +6,7 @@
 /*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:03:40 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/11 18:27:17 by adegadri         ###   ########.fr       */
+/*   Updated: 2022/05/12 16:28:45 by adegadri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,6 @@ int		mouse_hook(t_data *data);
 char	*ft_strjoinfree(char *s1, char *s2, int to_free);
 int		check_temp(char *s);
 int		ft_stronly(const char *s, const char *s2);
+int	    check_status_tx(t_data *data);
 
 #endif

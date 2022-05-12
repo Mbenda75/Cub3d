@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_all.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: benmoham <benmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 17:17:35 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/12 16:09:34 by adegadri         ###   ########.fr       */
+/*   Updated: 2022/05/12 19:13:06 by benmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,12 @@ int	check_all(int ac, char **av, t_data *data)
 		free_map3(data);
 		free_map(data);
 		exit_opt(data, "Error \n map not close\n");
-		return (0);
+	}
+	if (!check_status_tx(data))
+	{
+		free_map3(data);
+		free_map(data);
+		exit_opt(data, "Error\nOne or more textures are missing\n");
 	}
 	return (1);
 }

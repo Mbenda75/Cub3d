@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_opt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: benmoham <benmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:18:40 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/12 14:59:12 by adegadri         ###   ########.fr       */
+/*   Updated: 2022/05/12 19:43:39 by benmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,13 @@ int	take_rgb(t_color *s_key, char *line, t_data *data)
 		exit_opt(data, "Error\n Malloc failed\n");
 	while (++i < 3)
 	{
+		if (!tmp[i])
+		{
+			free_tab(tmp);
+			return (-1);
+		}
 		res[i] = ft_atol(tmp[i]);
-		if (res[i] < 0 || res[i] > 255 || ft_digit(tmp[i]) == 0)
+		if (!res[i] || res[i] < 0 || res[i] > 255 || ft_digit(tmp[i]) == 0)
 		{	
 			free_tab(tmp);
 			return (-1);
@@ -58,11 +63,11 @@ int	get_texture(t_data *data, char *path, t_img *img)
 	img->img = mlx_xpm_file_to_image(data->mlx, path, \
 	&img->width, &img->height);
 	if (!img->img)
-		exit_opt(data, "Error\n texture\n");
+		return (-1);
 	img->addr = mlx_get_data_addr(img->img, &img->bpp, \
 	&img->line, &img->endian);
 	if (!img->addr)
-		exit_opt(data, "Error\n texture\n");
+		return (-1);
 	img->status = 1;
 	return (1);
 }
@@ -83,6 +88,13 @@ void	return_get_opt(char *line, char **tmp, t_data *data)
 	exit_opt(data, "Error\n Already load");
 }
 
+int	check_status_tx(t_data *data)
+{
+	if (data->north.status == 1 && data->south.status == 1 && data->west.status == 1 && data->east.status == 1)
+		return (1);
+	return (0);
+}
+
 int	get_opt(t_data *data, char *line, int res)
 {
 	char	**tmp;
@@ -92,13 +104,47 @@ int	get_opt(t_data *data, char *line, int res)
 	if (!tmp)
 		exit_opt(data, "Error\n, Malloc failed");
 	if (!ft_strncmp(tmp[0], "NO", 3))
+	{
 		res = get_texture(data, tmp[1], &data->north);
+		if (res == -1)
+		{
+			free(line);
+			free_tab(tmp);
+			exit_opt(data, "Error\n texture\n");
+		}
+		
+	}
 	else if (!ft_strncmp(tmp[0], "SO", 3))
+	{	
 		res = get_texture(data, tmp[1], &data->south);
+		if (res == -1)
+		{
+			free(line);
+			free_tab(tmp);
+			exit_opt(data, "Error\n texture\n");
+		}
+	}
 	else if (!ft_strncmp(tmp[0], "WE", 3))
+	{
 		res = get_texture(data, tmp[1], &data->west);
+		if (res == -1)
+		{
+			free(line);
+			free_tab(tmp);
+			exit_opt(data, "Error\n texture\n");
+		}
+		
+	}
 	else if (!ft_strncmp(tmp[0], "EA", 3))
+	{
 		res = get_texture(data, tmp[1], &data->east);
+		if (res == -1)
+		{
+			free(line);
+			free_tab(tmp);
+			exit_opt(data, "Error\n texture\n");
+		}
+	}
 	else if (!ft_strncmp(tmp[0], "F", 2))
 		res = take_rgb(&data->floor, tmp[1], data);
 	else if (!ft_strncmp(tmp[0], "C", 2))

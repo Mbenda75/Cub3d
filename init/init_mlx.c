@@ -6,7 +6,7 @@
 /*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 15:20:58 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/12 15:00:04 by adegadri         ###   ########.fr       */
+/*   Updated: 2022/05/12 17:33:50 by adegadri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	init_data(t_data *data)
 	data->key_a = 0;
 	data->key_r = 0;
 	data->key_l = 0;
+	data->status_fc = 0;
 	init_color(data);
 }
 

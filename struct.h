@@ -6,7 +6,7 @@
 /*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 18:37:33 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/11 18:50:13 by adegadri         ###   ########.fr       */
+/*   Updated: 2022/05/12 17:31:07 by adegadri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ typedef struct s_data
 	int		key_r;
 	t_rgb	color;
 	int		status;
+	int		status_fc;
 }	t_data;
 
 #endif
