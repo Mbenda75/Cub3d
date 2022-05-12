@@ -3,14 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   check_all.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: benmoham <benmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 17:17:35 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/11 19:05:58 by adegadri         ###   ########.fr       */
+/*   Updated: 2022/05/12 15:27:33 by benmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "check.h"
+/* 
+void    check_wall_map(char **str, int line)
+{
+    int    i;
+    int    nb_char;
+
+    i = 1;
+    while (i < line)
+    {
+        nb_char = ft_strlen((str[i])) - 1;
+        if (str[i][0] != '1' || str[i][nb_char] != '1')
+            error_map(4, str);
+        i++;
+    }
+} */
 
 void	check_main(int ac, char **av, t_data *data)
 {

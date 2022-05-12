@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: benmoham <benmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 13:49:59 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/11 16:45:56 by adegadri         ###   ########.fr       */
+/*   Updated: 2022/05/12 14:27:51 by benmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
+#include <string.h>
 # include <sys/types.h>
 # include <sys/stat.h>
 

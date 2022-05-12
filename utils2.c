@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: benmoham <benmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 18:24:48 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/11 18:24:50 by adegadri         ###   ########.fr       */
+/*   Updated: 2022/05/12 14:00:39 by benmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	exit_opt(t_data *data, char *msg)
 {
 	if (msg == NULL)
 		(void)msg;
+	else
+		printf("Error\n %s\n", msg);
 	if (data->mlx != NULL)
 	{
 		if (data->win != NULL)
