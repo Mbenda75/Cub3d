@@ -6,12 +6,27 @@
 /*   By: benmoham <benmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:18:40 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/12 19:43:39 by benmoham         ###   ########.fr       */
+/*   Updated: 2022/05/13 12:39:48 by benmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
+int count(char *line)
+{
+	int i;
+	int count;
+
+	i = 0;
+	count = 0;
+	while(line[i])
+	{
+		if (line[i] == ',')
+			count++;
+		i++;
+	}
+	return (count);
+}
 int	take_rgb(t_color *s_key, char *line, t_data *data)
 {
 	int		i;
@@ -21,6 +36,8 @@ int	take_rgb(t_color *s_key, char *line, t_data *data)
 	i = -1;
 	if (s_key->status == 1)
 		return (2);
+
+//	printf("lcountt === %d\n", nb);
 	tmp = ft_split(line, ',');
 	if (!tmp)
 		exit_opt(data, "Error\n Malloc failed\n");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: benmoham <benmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:03:40 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/12 16:28:45 by adegadri         ###   ########.fr       */
+/*   Updated: 2022/05/13 12:40:29 by benmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ char	*ft_strjoinfree(char *s1, char *s2, int to_free);
 int		check_temp(char *s);
 int		ft_stronly(const char *s, const char *s2);
 int	    check_status_tx(t_data *data);
+int count(char *line);
 
 #endif
