@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_if_close.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: benmoham <benmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 15:16:24 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/12 16:08:23 by adegadri         ###   ########.fr       */
+/*   Updated: 2022/05/12 20:37:48 by benmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,10 @@ int	check_if_is_close(t_data *data)
 			(data->map3[i][j - 1] && data->map3[i][j - 1] == '3') || \
 			(data->map3[i + 1][j] && data->map3[i + 1][j] == '3') || \
 			(data->map3[i - 1][j] && data->map3[i - 1][j] == '3')))
+			{
+				printf("j === %d\n i === %d\nc === %c\n c2 === %c\n c33 === %c\n", j, i, data->map3[i][j], data->map3[i][j + 1], data->map3[i + 1][j]);
 				return (0);
+			}
 			j++;
 		}
 		i++;

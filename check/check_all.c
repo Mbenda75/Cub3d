@@ -6,7 +6,7 @@
 /*   By: benmoham <benmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 17:17:35 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/12 19:13:06 by benmoham         ###   ########.fr       */
+/*   Updated: 2022/05/12 20:40:05 by benmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	check_all(int ac, char **av, t_data *data)
 	if (data->width < 3 || data->lenght < 3)
 		exit_opt(data, "Error \n map to small\n");
 	change_space_to_3(data);
+	for (int i = 0;i < data->lenght;i++)
+	printf("map3 == %s\n", data->map[i]);
 	if (!check_if_is_close(data) || !first_lenght(data))
 	{
 		free_map3(data);

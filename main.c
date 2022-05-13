@@ -6,7 +6,7 @@
 /*   By: benmoham <benmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 13:24:53 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/12 19:28:21 by benmoham         ###   ########.fr       */
+/*   Updated: 2022/05/12 20:27:02 by benmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,6 @@ char	*check_tmp_in_get_map(char *tmp, t_data *data, int res)
 			data->line = ft_strjoinfree(data->line, tmp, 1);
 			data->status = 1;
 		}
-		if (tmp)
-		{
-			free(tmp);
-			tmp = NULL;
-		}
 	}
 	return (tmp);
 }
@@ -85,8 +80,11 @@ int	get_map(t_data *data, char **av)
 	data->status = 0;
 	if (check_init_get_map(data, av) == 0)
 		return (0);
-	while (get_next_line(data->fd, &tmp) == 1 && res != -1)
-			tmp = check_tmp_in_get_map(tmp, data, res);
+	while ((tmp = get_next_line(data->fd)) && res != -1)
+	{
+		tmp = check_tmp_in_get_map(tmp, data, res);
+		printf("s == %s\n", tmp);
+	}
 	if (tmp)
 	{
 		free(tmp);

@@ -5,101 +5,64 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/11 16:43:36 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/11 16:43:41 by adegadri         ###   ########.fr       */
+/*   Created: 2021/09/24 15:40:18 by madiallo          #+#    #+#             */
+/*   Updated: 2022/05/12 20:09:26 by adegadri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strlen(char *str)
+int	ft_strlen(char *s)
 {
 	int	i;
 
-	if (!str)
-		return (0);
 	i = 0;
-	while (str[i] != '\0')
-		i++;
+	if (s)
+		while (s[i])
+			i++;
 	return (i);
 }
 
 char	*ft_strchr(char *s, int c)
 {
-	char	*str;
-
-	str = (char *)s;
-	if (!str)
+	if (!s)
 		return (NULL);
-	while (*str != c)
+	while (*s)
 	{
-		if (*str == '\0')
-			return (NULL);
-		str++;
+		if (*s == c)
+			return ((char *)s);
+		s++;
 	}
-	return (str);
+	if (*s == '\0' && c == '\0')
+		return (NULL);
+	return (NULL);
 }
 
-char	*ft_strdup(char *s)
+char	*ft_strjoin(char *s1, char	*s2)
 {
-	int		i;
-	int		len;
-	char	*s2;
-
-	len = 0;
-	while (s[len])
-		len++;
-	s2 = malloc(sizeof(char) * (len + 1));
-	if (s2 == NULL)
-		return (NULL);
-	i = 0;
-	while (i < len)
-	{
-		s2[i] = s[i];
-		i++;
-	}
-	s2[i] = '\0';
-	return (s2);
-}
-
-char	*ft_strjoin(char *s1, char *s2)
-{
-	int		l2;
-	char	*temp;
-	char	*str;
+	char	*join;
 	char	*ptr;
+	char	*temp;
 
-	if (!s2)
+	if (!s1 && !s2)
 		return (NULL);
-	l2 = ft_strlen(s2);
-	str = malloc(sizeof(char) * ((ft_strlen(s1) + l2) + 1));
-	if (!str)
+	join = (char *)malloc(((ft_strlen(s1) + ft_strlen(s2) + 1)
+				* sizeof(char)));
+	if (!join)
 		return (NULL);
-	ptr = str;
+	ptr = join;
 	if (s1)
 	{
 		temp = s1;
 		while (*s1)
-			*str++ = *s1++;
+		{
+			*join++ = *s1++;
+		}
 		free(temp);
-		temp = 0;
 	}
-	while (*s2)
-		*str++ = *s2++;
-	*str = '\0';
+	if (*s2)
+		while (*s2)
+			*join++ = *s2++;
+	*join = '\0';
 	return (ptr);
-}
-
-int	ft_end(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '\n')
-			return (1);
-		i++;
-	}
-	return (0);
 }

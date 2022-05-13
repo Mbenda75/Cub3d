@@ -3,112 +3,91 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: benmoham <benmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/02 17:56:28 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/12 17:37:05 by adegadri         ###   ########.fr       */
+/*   Created: 2021/09/24 15:39:27 by madiallo          #+#    #+#             */
+/*   Updated: 2022/05/12 20:41:33 by benmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "get_next_line.h"
 
-void	ft_free_save(char *save)
+static char	*ft_free_str(char *save)
 {
 	if (save)
-	{
 		free(save);
-		save = NULL;
-	}
+	return (NULL);
 }
 
-char	*ft_save(char *save)
+static void	ft_reload_buffer(char *str)
 {
-	int		i;
-	char	*dst;
+	int	i;
+	int	j;
 
-	i = 0;
-	while (save[i] && save[i] != '\n')
-		i++;
-	dst = (char *)malloc(sizeof(char) * (i + 1));
-	if (!dst)
-	{
-		ft_free_save(save);
-		return (NULL);
-	}
-	i = 0;
-	while (save[i] && save[i] != '\n')
-	{
-		dst[i] = save[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (dst);
-}
-
-char	*ft_resave(char *save)
-{
-	int		i;
-	int		len;
-	char	*dst;
-	int		j;
-
-	i = 0;
-	dst = NULL;
-	while (save[i] && save[i] != '\n')
-		i++;
-	i++;
-	len = ft_strlen(save);
-	if ((len - i) != 0)
-		dst = (char *)malloc(sizeof(char) * ((len - i) + 1));
-	if (!dst)
-	{
-		ft_free_save(save);
-		return (NULL);
-	}
 	j = 0;
-	while (save[i])
-		dst[j++] = save[i++];
-	ft_free_save(save);
-	if (dst)
-		dst[j] = '\0';
-	return (dst);
-}
-
-int	get_next_line_protect(int fd, char **save, char **line)
-{
-	if (fd < 0 || fd >= 1024 || BUFFER_SIZE < 1 || \
-	read(fd, NULL, 0) != 0 || !line)
-		return (0);
-	if (!*save)
-		*save = ft_strdup("");
-	return (1);
-}
-
-int	get_next_line(int fd, char **line)
-{
-	char		buffer[BUFFER_SIZE + 1];
-	static char	*save;
-	int			rd;
-
-	if (!get_next_line_protect(fd, &save, line))
-		return (-1);
-	while (!ft_strchr(save, '\n'))
+	i = 0;
+	while (str[j] && str[j] != '\n')
+		j++;
+	if (str[j] == '\n')
 	{
-		rd = read(fd, buffer, BUFFER_SIZE);
-		buffer[rd] = '\0';
-		if (rd == -1)
-			return (-1);
-		if (rd == 0)
-		{
-			*line = ft_strdup(save);
-			ft_free_save(save);
-			return (0);
-		}
-		save = ft_strjoin(save, buffer);
+		while (str[j++])
+			str[i++] = str[j];
+		while (str[i])
+			str[i++] = '\0';
 	}
-	if (ft_end(save) == 1)
-		*line = ft_save(save);
-	save = ft_resave(save);
-	return (1);
+	else
+		while (str[i])
+			str[i++] = '\0';
+}
+
+static char	*ft_put_line(char *str)
+{
+	char	*line;
+	int		i;
+
+	i = 0;
+	while (str[i] && str[i] != '\n')
+		i++;
+
+	line = (char *)malloc(sizeof(char) * (i + 1));
+	if (!line)
+		return (ft_free_str(str));
+	i = 0;
+	while (str[i] && str[i] != '\n')
+	{
+		line[i] = str[i];
+		i++;
+	}
+	line[i] = '\0';
+	ft_free_str(str);
+	return (line);
+}
+
+char	*get_next_line(int fd)
+{
+	static char	buffer[1024][BUFFER_SIZE + 1];
+	int			bytes;
+	char		*line;
+
+	bytes = 1;
+	line = NULL;
+	if (BUFFER_SIZE < 1 || fd < 0 || read(fd, "", 0) == -1)
+		return (ft_free_str(line));
+	line = ft_strjoin(line, buffer[fd]);
+	if (!line)
+		return (NULL);
+	while (bytes > 0 && !ft_strchr(line, '\n'))
+	{
+		bytes = read(fd, buffer[fd], BUFFER_SIZE);
+		if (bytes == -1)
+			break ;
+		buffer[fd][bytes] = '\0';
+		line = ft_strjoin(line, buffer[fd]);
+	}
+	if (bytes < 0 || !line || !*line)
+		return (ft_free_str(line));
+	if (*line)
+		line = ft_put_line(line);
+	ft_reload_buffer(buffer[fd]);
+	return (line);
 }

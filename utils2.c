@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: benmoham <benmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 18:24:48 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/12 17:10:52 by adegadri         ###   ########.fr       */
+/*   Updated: 2022/05/12 20:22:13 by benmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,26 @@ void	add_rgb(long *res, t_color *s_key)
 	s_key->g = (int)res[1];
 	s_key->b = (int)res[2];
 	s_key->status = 1;
+}
+
+char	*ft_strdup(char *s)
+{
+	int		i;
+	char	*str;
+	int		e;
+
+	e = 0;
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	str = malloc(sizeof(*str) * (i + 1));
+	if (str == NULL)
+		return (NULL);
+	while (e < i)
+	{
+		str[e] = s[e];
+		e++;
+	}
+	str[e] = '\0';
+	return (str);
 }
