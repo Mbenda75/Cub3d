@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: benmoham <benmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 13:24:53 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/13 14:14:27 by adegadri         ###   ########.fr       */
+/*   Updated: 2022/05/13 17:31:16 by benmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	end_get_map(t_data *data)
 	return (1);
 }
 
-char	*check_tmp_in_get_map(char *tmp, t_data *data, int res)
+char	*check_tmp_in_get_map(char *tmp, t_data *data, int *res)
 {
 	int	nb;
 
@@ -59,15 +59,15 @@ char	*check_tmp_in_get_map(char *tmp, t_data *data, int res)
 		free_tmp(tmp);
 	else if (check_temp(tmp) == 0 || data->status == 1)
 	{
-		tmp = ft_strjoinfree(tmp, " \n", 1);
+		tmp = ft_strjoinfree(tmp, "\n", 1);
 		nb = count(tmp);
 		if (nb > 2)
 		{
 			free(tmp);
 			exit_opt(data, "Error\n texture");
 		}
-		res = get_opt(data, tmp, 0);
-		if (res != 1)
+		*res = get_opt(data, tmp, 0);
+		if (*res != 1)
 		{
 			data->line = ft_strjoinfree(data->line, tmp, 1);
 			data->status = 1;
@@ -87,8 +87,12 @@ int	get_map(t_data *data, char **av)
 	data->status = 0;
 	if (check_init_get_map(data, av) == 0)
 		return (0);
-	while ((tmp = get_next_line(data->fd)) && res != -1)
-		tmp = check_tmp_in_get_map(tmp, data, res);
+	tmp = get_next_line(data->fd);
+	while (tmp && res != -1)
+	{
+		tmp = check_tmp_in_get_map(tmp, data, &res);
+		tmp = get_next_line(data->fd);
+	}
 	if (tmp)
 	{
 		free(tmp);
@@ -107,6 +111,7 @@ int	main(int ac, char **av)
 	data.map = NULL;
 	data.map3 = NULL;
 	check_main(ac, av, &data);
+	init_ray(&data);
 	init_pos_dir(&data);
 	mlx_hook(data.win, 17, 1L << 17, mouse_hook, &data);
 	mlx_loop_hook(data.mlx, loop_raycast, &data);

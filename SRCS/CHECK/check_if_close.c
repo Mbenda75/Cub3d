@@ -6,7 +6,7 @@
 /*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 15:16:24 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/13 13:44:49 by adegadri         ###   ########.fr       */
+/*   Updated: 2022/05/13 17:00:40 by adegadri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	check_if_is_close(t_data *data)
 		{
 			if ((data->map3[i][j] && (data->map3[i][j] == '0' || \
 			data->map3[i][j] == 'W' || data->map3[i][j] == 'E' || \
-			data->map3[i][j] == 'E' || data->map3[i][j] == 'S')) && \
+			data->map3[i][j] == 'N' || data->map3[i][j] == 'S')) && \
 			((data->map3[i][j + 1] && data->map3[i][j + 1] == '3') || \
 			(data->map3[i][j - 1] && data->map3[i][j - 1] == '3') || \
 			(data->map3[i + 1][j] && data->map3[i + 1][j] == '3') || \

@@ -6,7 +6,7 @@
 /*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 16:08:00 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/13 13:44:48 by adegadri         ###   ########.fr       */
+/*   Updated: 2022/05/13 15:59:55 by adegadri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	get_first_position(t_data *data)
 			data->map3[i][j] == 'W'))
 			{
 				data->player.pos_x = i;
-				data->player.pos_y = j - 1;
+				data->player.pos_y = j;
 			}
 			j++;
 		}

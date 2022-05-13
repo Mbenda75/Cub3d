@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_opt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: benmoham <benmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:18:40 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/13 14:12:13 by adegadri         ###   ########.fr       */
+/*   Updated: 2022/05/13 17:32:31 by benmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,21 @@ int	if_opt(t_data *data, char **tmp, int res, char *line)
 int	get_opt(t_data *data, char *line, int res)
 {
 	char	**tmp;
+	int		i;
 
+	i = 0;
 	tmp = NULL;
 	tmp = ft_split(line, ' ');
+	while (tmp[i])
+	{
+		if (i == 2)
+		{
+			free(line);
+			free_tab(tmp);
+			exit_opt(data, "Error\n bad arg\n");
+		}
+		i++;
+	}
 	if (!tmp)
 		exit_opt(data, "Error\n, Malloc failed");
 	res = if_opt(data, tmp, res, line);

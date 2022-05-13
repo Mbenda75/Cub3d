@@ -6,7 +6,7 @@
 /*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 16:40:07 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/13 14:01:47 by adegadri         ###   ########.fr       */
+/*   Updated: 2022/05/13 15:20:48 by adegadri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	loop_hit(t_data *data)
 				data->ray.side = NO;
 			data->ray.side = 1;
 		}
-		if (data->map[data->ray.mapx][data->ray.mapy] == '1')
+		if (data->map3[data->ray.mapx][data->ray.mapy] == '1')
 			data->ray.hit = 1;
 	}
 }

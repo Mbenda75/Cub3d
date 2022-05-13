@@ -6,7 +6,7 @@
 /*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 13:05:48 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/13 14:01:12 by adegadri         ###   ########.fr       */
+/*   Updated: 2022/05/13 17:19:56 by adegadri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,26 @@ int	if_not_tmp(char **tmp, int i)
 	return (0);
 }
 
+int	check_space(char *tmp)
+{
+	int	j;
+
+	j = 0;
+	while (tmp[j])
+	{
+		if (tmp[j] == ' ')
+			return (1);
+		j++;
+	}
+	return (0);
+}
+
 int	take_rgb(t_color *s_key, char *line, t_data *data)
 {
 	int		i;
 	long	res[3];
 	char	**tmp;
+
 
 	i = -1;
 	if (s_key->status == 1)

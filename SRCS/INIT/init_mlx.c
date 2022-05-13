@@ -6,7 +6,7 @@
 /*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 15:20:58 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/13 13:57:23 by adegadri         ###   ########.fr       */
+/*   Updated: 2022/05/13 15:09:01 by adegadri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,16 @@ void	init_img(t_data *data)
 	data->south.img = NULL;
 	data->west.img = NULL;
 	data->east.img = NULL;
+}
+
+void	init_ray(t_data *data)
+{
+	data->ray.dir.x = 1;
+	data->ray.dir.y = 1;
+	data->ray.side = 0;
+	data->ray.stepx = 0;
+	data->ray.stepy = 0;
+	data->ray.mapx = 1;
+	data->ray.mapy = 1;
+	data->ray.line_height = 0;
 }

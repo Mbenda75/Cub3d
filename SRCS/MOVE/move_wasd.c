@@ -6,7 +6,7 @@
 /*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 16:50:28 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/13 13:57:50 by adegadri         ###   ########.fr       */
+/*   Updated: 2022/05/13 15:56:53 by adegadri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,53 @@
 
 void	move_w(t_data *data, t_play *player)
 {
-	if (data->map[(int)(player->pos.x + player->dir.x * 0.4)]
-		[(int)(player->pos.y)] == '0')
+	if (data->map3[(int)(player->pos.x + player->dir.x * \
+	0.4)][(int)(player->pos.y)] == '0' || \
+	data->map3[(int)(player->pos.x + player->dir.x * \
+	0.4)][(int)(player->pos.y)] == data->player.dir_pers)
 		player->pos.x += player->dir.x * 0.4;
-	if (data->map[(int)(player->pos.x)][(int)(player->pos.y + player->dir.y
-		* 0.4)] == '0')
+	if (data->map3[(int)(player->pos.x)][(int)(player->pos.y + player->dir.y * \
+	0.4)] == '0' || data->map3[(int)(player->pos.x)][(int)(player->pos.y + \
+	player->dir.y * 0.4)] == data->player.dir_pers)
 		player->pos.y += player->dir.y * 0.4;
 }
 
 void	move_s(t_data *data, t_play *player)
 {
-	if (data->map[(int)(player->pos.x - player->dir.x * 0.4)]
-	[(int)(player->pos.y)] == '0')
+	if (data->map3[(int)(player->pos.x - player->dir.x * \
+	0.4)][(int)(player->pos.y)] == '0' || \
+	data->map3[(int)(player->pos.x - \
+	player->dir.x * 0.4)][(int)(player->pos.y)] == data->player.dir_pers)
 		player->pos.x -= player->dir.x * 0.4;
-	if (data->map[(int)(player->pos.x)][(int)(player->pos.y - player->dir.y
-		* 0.4)] == '0')
+	if (data->map3[(int)(player->pos.x)][(int)(player->pos.y - player->dir.y * \
+	0.4)] == '0' || data->map3[(int)(player->pos.x)][(int)(player->pos.y - \
+	player->dir.y * 0.4)] == data->player.dir_pers)
 		player->pos.y -= player->dir.y * 0.4;
 }
 
 void	move_d(t_data *data, t_play *player)
 {
-	if (data->map[(int)(player->pos.x + player->plane.x
-			* 0.4)][(int)(player->pos.y)] == '0')
+	if (data->map3[(int)(player->pos.x + player->plane.x * \
+	0.4)][(int)(player->pos.y)] == '0' || data->map3[(int)(player->pos.x + \
+	player->plane.x * 0.4)][(int)(player->pos.y)] == data->player.dir_pers)
 		player->pos.x += player->plane.x * 0.4;
-	if (data->map[(int)(player->pos.x)][(int)(player->pos.y + player->plane.y
-		* 0.4)] == '0')
+	if (data->map3[(int)(player->pos.x)][(int)(player->pos.y + \
+	player->plane.y * 0.4)] == '0' || \
+	data->map3[(int)(player->pos.x)][(int)(player->pos.y + \
+	player->plane.y * 0.4)] == data->player.dir_pers)
 		player->pos.y += player->plane.y * 0.4;
 }
 
 void	move_a(t_data *data, t_play *player)
 {
-	if (data->map[(int)(player->pos.x - player->plane.x
-			* 0.4)][(int)(player->pos.y)] == '0')
+	if (data->map3[(int)(player->pos.x - player->plane.x * \
+	0.4)][(int)(player->pos.y)] == '0' || data->map3[(int)(player->pos.x - \
+	player->plane.x * 0.4)][(int)(player->pos.y)] == data->player.dir_pers)
 		player->pos.x += -(player->plane.x * 0.4);
-	if (data->map[(int)(player->pos.x)][(int)(player->pos.y - player->plane.y *
-	0.4)] == '0')
+	if (data->map3[(int)(player->pos.x)][(int)(player->pos.y - \
+	player->plane.y * 0.4)] == '0' || \
+	data->map3[(int)(player->pos.x)][(int)(player->pos.y - \
+	player->plane.y * 0.4)] == data->player.dir_pers)
 		player->pos.y += -(player->plane.y * 0.4);
 }
 
