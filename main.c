@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: benmoham <benmoham@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 13:24:53 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/13 12:40:37 by benmoham         ###   ########.fr       */
+/*   Updated: 2022/05/13 12:47:31 by adegadri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,9 @@ int	end_get_map(t_data *data)
 
 char	*check_tmp_in_get_map(char *tmp, t_data *data, int res)
 {
-	int nb;
+	int	nb;
 
+	nb = 0;
 	if (data->status == 0 && (check_temp(tmp) == 1))
 	{	
 		free(tmp);
@@ -69,13 +70,12 @@ char	*check_tmp_in_get_map(char *tmp, t_data *data, int res)
 			exit_opt(data, "Error\n texture");
 		}
 		res = get_opt(data, tmp, 0);
-		
 		if (res != 1)
 		{
 			data->line = ft_strjoinfree(data->line, tmp, 1);
 			data->status = 1;
 		}
-		if(tmp)
+		if (tmp)
 		{
 			free(tmp);
 			tmp = NULL;
@@ -95,7 +95,10 @@ int	get_map(t_data *data, char **av)
 	if (check_init_get_map(data, av) == 0)
 		return (0);
 	while ((tmp = get_next_line(data->fd)) && res != -1)
+	{
 		tmp = check_tmp_in_get_map(tmp, data, res);
+		printf("s == %s\n", tmp);
+	}
 	if (tmp)
 	{
 		free(tmp);

@@ -3,30 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_opt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: benmoham <benmoham@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:18:40 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/13 12:39:48 by benmoham         ###   ########.fr       */
+/*   Updated: 2022/05/13 12:54:21 by adegadri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
+#include "option.h"
 
-int count(char *line)
-{
-	int i;
-	int count;
-
-	i = 0;
-	count = 0;
-	while(line[i])
-	{
-		if (line[i] == ',')
-			count++;
-		i++;
-	}
-	return (count);
-}
 int	take_rgb(t_color *s_key, char *line, t_data *data)
 {
 	int		i;
@@ -36,8 +21,6 @@ int	take_rgb(t_color *s_key, char *line, t_data *data)
 	i = -1;
 	if (s_key->status == 1)
 		return (2);
-
-//	printf("lcountt === %d\n", nb);
 	tmp = ft_split(line, ',');
 	if (!tmp)
 		exit_opt(data, "Error\n Malloc failed\n");
@@ -107,9 +90,49 @@ void	return_get_opt(char *line, char **tmp, t_data *data)
 
 int	check_status_tx(t_data *data)
 {
-	if (data->north.status == 1 && data->south.status == 1 && data->west.status == 1 && data->east.status == 1)
+	if (data->north.status == 1 && data->south.status == 1 && \
+	data->west.status == 1 && data->east.status == 1)
 		return (1);
 	return (0);
+}
+
+void	get_opt_exit(int res, t_data *data,char *line, char **tmp)
+{
+	if (res == -1)
+	{
+		free(line);
+		free_tab(tmp);
+		exit_opt(data, "Error\n texture\n");
+	}
+}
+
+int	if_opt(t_data *data, char **tmp, int res, char *line)
+{
+	if (!ft_strncmp(tmp[0], "NO", 3))
+	{
+		res = get_texture(data, tmp[1], &data->north);
+		get_opt_exit(res, data, line, tmp);
+	}
+	else if (!ft_strncmp(tmp[0], "SO", 3))
+	{	
+		res = get_texture(data, tmp[1], &data->south);
+		get_opt_exit(res, data, line, tmp);
+	}
+	else if (!ft_strncmp(tmp[0], "WE", 3))
+	{
+		res = get_texture(data, tmp[1], &data->west);
+		get_opt_exit(res, data, line, tmp);
+	}
+	else if (!ft_strncmp(tmp[0], "EA", 3))
+	{
+		res = get_texture(data, tmp[1], &data->east);
+		get_opt_exit(res, data, line, tmp);
+	}
+	else if (!ft_strncmp(tmp[0], "F", 2))
+		res = take_rgb(&data->floor, tmp[1], data);
+	else if (!ft_strncmp(tmp[0], "C", 2))
+		res = take_rgb(&data->ceiling, tmp[1], data);
+	return (res);
 }
 
 int	get_opt(t_data *data, char *line, int res)
@@ -120,52 +143,7 @@ int	get_opt(t_data *data, char *line, int res)
 	tmp = ft_split(line, ' ');
 	if (!tmp)
 		exit_opt(data, "Error\n, Malloc failed");
-	if (!ft_strncmp(tmp[0], "NO", 3))
-	{
-		res = get_texture(data, tmp[1], &data->north);
-		if (res == -1)
-		{
-			free(line);
-			free_tab(tmp);
-			exit_opt(data, "Error\n texture\n");
-		}
-		
-	}
-	else if (!ft_strncmp(tmp[0], "SO", 3))
-	{	
-		res = get_texture(data, tmp[1], &data->south);
-		if (res == -1)
-		{
-			free(line);
-			free_tab(tmp);
-			exit_opt(data, "Error\n texture\n");
-		}
-	}
-	else if (!ft_strncmp(tmp[0], "WE", 3))
-	{
-		res = get_texture(data, tmp[1], &data->west);
-		if (res == -1)
-		{
-			free(line);
-			free_tab(tmp);
-			exit_opt(data, "Error\n texture\n");
-		}
-		
-	}
-	else if (!ft_strncmp(tmp[0], "EA", 3))
-	{
-		res = get_texture(data, tmp[1], &data->east);
-		if (res == -1)
-		{
-			free(line);
-			free_tab(tmp);
-			exit_opt(data, "Error\n texture\n");
-		}
-	}
-	else if (!ft_strncmp(tmp[0], "F", 2))
-		res = take_rgb(&data->floor, tmp[1], data);
-	else if (!ft_strncmp(tmp[0], "C", 2))
-		res = take_rgb(&data->ceiling, tmp[1], data);
+	res = if_opt(data, tmp, res, line);
 	if (res == 2)
 		return_get_opt(line, tmp, data);
 	free_tab(tmp);

@@ -1,6 +1,3 @@
-
-# //RGB
-# //line vide a gerer
 NAME = cub3D
 
 SRCS = 	gnl/get_next_line_utils.c \
@@ -16,7 +13,9 @@ SRCS = 	gnl/get_next_line_utils.c \
 		move/move_all.c \
 		move/move_wasd.c \
 		move/rotate_move.c \
-		draw/draw2.c\
+		get_option/get_opt.c \
+		get_option/get_opt_utils.c \
+		draw/draw2.c \
 		draw/raycast.c \
 		draw/display.c \
 		catch_size.c \
@@ -24,7 +23,6 @@ SRCS = 	gnl/get_next_line_utils.c \
 		utils.c \
 		utils2.c \
 		hook.c \
-		get_opt.c \
 		exit/free_map.c \
 		exit/free_data.c \
 		main.c
@@ -36,7 +34,6 @@ CC 			= 	gcc
 
 CFLAGS		= 	-Wall -Wextra -Werror -g3 #-fsanitize=address
 RM			= 	rm -f
-NAME		= 	parse
 FLAGS		=	-ldl -Imlx -Lmlx -lmlx -lm -lXext -lX11
 
 all: 			${NAME}

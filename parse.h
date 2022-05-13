@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: benmoham <benmoham@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:03:40 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/13 12:40:29 by benmoham         ###   ########.fr       */
+/*   Updated: 2022/05/13 12:57:25 by adegadri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@
 # include "gnl/get_next_line.h"
 # include "check/check.h"
 # include "init/init_all.h"
+# include "get_option/option.h"
 # include "move/move.h"
 # include "draw/draw.h"
 # include "exit/free.h"
@@ -51,7 +52,6 @@ char	**ft_split(char const *s, char c);
 int		ft_strncmp(char *s1, char *s2, unsigned int n);
 int		ft_isspace(char c);
 char	*ft_strmalloc(const char *s);
-int		get_opt(t_data *data, char *line, int res);
 void	exit_opt(t_data *data, char *msg);
 int		ft_strlen(char *str);
 int		size_width(t_data *data);
@@ -63,14 +63,12 @@ void	*ft_memset(void *b, int c, unsigned int len);
 int		get_map(t_data *data, char **av);
 char	*ft_strdup(char *src);
 long	ft_atol(char *str);
-void	exit_opt(t_data *data, char *msg);
 void	add_rgb(long *res, t_color *s_key);
 int		loop_raycast(t_data *data);
 int		mouse_hook(t_data *data);
 char	*ft_strjoinfree(char *s1, char *s2, int to_free);
 int		check_temp(char *s);
 int		ft_stronly(const char *s, const char *s2);
-int	    check_status_tx(t_data *data);
-int count(char *line);
+int		check_status_tx(t_data *data);
 
 #endif
