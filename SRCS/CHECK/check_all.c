@@ -6,12 +6,11 @@
 /*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 17:17:35 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/13 14:14:39 by adegadri         ###   ########.fr       */
+/*   Updated: 2022/05/13 17:30:31 by adegadri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../INC/check.h"
-
 
 void	check_arg(int ac, char **av)
 {

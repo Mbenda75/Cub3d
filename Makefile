@@ -8,6 +8,7 @@ SRCS = 	SRCS/GNL/get_next_line_utils.c \
 		SRCS/CHECK/check_if_close.c \
 		SRCS/CHECK/check_map.c \
 		SRCS/CHECK/check_name.c \
+		SRCS/CHECK/change_to_3.c \
 		SRCS/CHECK/check_all.c \
 		SRCS/CHECK/check_position.c\
 		SRCS/MOVE/move_all.c \

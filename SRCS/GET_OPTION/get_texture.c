@@ -6,27 +6,11 @@
 /*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 13:05:48 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/13 17:19:56 by adegadri         ###   ########.fr       */
+/*   Updated: 2022/05/13 20:09:36 by adegadri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../INC/option.h"
-
-int	count(char *line)
-{
-	int	i;
-	int	count;
-
-	i = 0;
-	count = 0;
-	while (line[i])
-	{
-		if (line[i] == ',')
-			count++;
-		i++;
-	}
-	return (count);
-}
 
 int	check_status_tx(t_data *data)
 {
@@ -66,7 +50,6 @@ int	take_rgb(t_color *s_key, char *line, t_data *data)
 	long	res[3];
 	char	**tmp;
 
-
 	i = -1;
 	if (s_key->status == 1)
 		return (2);
@@ -78,7 +61,7 @@ int	take_rgb(t_color *s_key, char *line, t_data *data)
 		if (if_not_tmp(tmp, i) == -1)
 			return (-1);
 		res[i] = ft_atol(tmp[i]);
-		if (!res[i] || res[i] < 0 || res[i] > 255 || ft_digit(tmp[i]) == 0)
+		if ((res[i] < 0 && res[i] > 255 ) && ft_digit(tmp[i]) == 0)
 		{	
 			free_tab(tmp);
 			return (-1);
@@ -95,6 +78,7 @@ int	get_texture(t_data *data, char *path, t_img *img)
 
 	i = 0;
 	(void)data;
+	printf("Path:%s\n",path );
 	if (img->status == 1)
 		return (2);
 	while (path[i])

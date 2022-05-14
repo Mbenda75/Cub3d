@@ -6,7 +6,7 @@
 /*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:03:40 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/13 13:56:16 by adegadri         ###   ########.fr       */
+/*   Updated: 2022/05/13 17:38:17 by adegadri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,7 @@ char	*ft_strjoinfree(char *s1, char *s2, int to_free);
 int		check_temp(char *s);
 int		ft_stronly(const char *s, const char *s2);
 int		check_status_tx(t_data *data);
+char	*ft_strcpy(char *dest, char *src);
+int		count(char *line);
 
 #endif

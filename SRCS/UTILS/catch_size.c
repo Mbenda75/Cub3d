@@ -6,7 +6,7 @@
 /*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 15:16:36 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/13 13:50:22 by adegadri         ###   ########.fr       */
+/*   Updated: 2022/05/13 17:38:46 by adegadri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,36 @@ int	size_lenght(t_data *data)
 	while (data->map[i])
 		i++;
 	return (i);
+}
+
+int	count(char *line)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (line[i])
+	{
+		if (line[i] == ',')
+			count++;
+		i++;
+	}
+	return (count);
+}
+
+char	*ft_strcpy(char *dest, char *src)
+{
+	int	i;
+
+	i = 0;
+	if (!src)
+		return (NULL);
+	while (src[i] != '\0')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }

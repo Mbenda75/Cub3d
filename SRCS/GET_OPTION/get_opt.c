@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_opt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: benmoham <benmoham@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegadri <adegadri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:18:40 by adegadri          #+#    #+#             */
-/*   Updated: 2022/05/13 17:32:31 by benmoham         ###   ########.fr       */
+/*   Updated: 2022/05/13 20:11:19 by adegadri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	get_opt_exit(int res, t_data *data, char *line, char **tmp)
 
 int	if_opt(t_data *data, char **tmp, int res, char *line)
 {
+	printf("tmp%s\n", tmp[0]);
 	if (!ft_strncmp(tmp[0], "NO", 3))
 	{
 		res = get_texture(data, tmp[1], &data->north);
